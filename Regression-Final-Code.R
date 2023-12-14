@@ -16,12 +16,21 @@ initial_reg <- lm(Life_expectancy~., data=data)
 print(summary(initial_reg))
 
 #regression with just 2015
-reg_2015 <- lm(Life.expectancy~as.factor(Country)+
-                 Adult.Mortality+infant.deaths+
-                 Alcohol+Hepatitis.B+Measles+BMI+under.five.deaths+Polio
-               +Diphtheria+HIV.AIDS+GDP+Population+thinness..1.19.years+
-                 thinness.5.9.years+Income.composition.of.resources+Schooling, data=data.2015)
-reg_2010 <- lm(Life_expectancy~. - Year - Country, data=data.2010)
+reg_2015 <- lm(Life_expectancy~as.factor(Region)+Infant_deaths+Under_five_deaths+
+                 Adult_mortality+Alcohol_consumption+Hepatitis_B+Measles+BMI+Polio+
+                 Diphtheria+Incidents_HIV+GDP_per_capita+Population_mln+
+                 Thinness_ten_nineteen_years+Thinness_five_nine_years+Schooling+
+                 as.factor(Economy_status_Developed), data=data.2015)
+#reduced model
+reg_2015_red <- lm(Life_expectancy~Adult_mortality
+                     +Alcohol_consumption+Measles+BMI+
+                     Diphtheria+Incidents_HIV+GDP_per_capita+Population_mln+
+                     Thinness_ten_nineteen_years+Schooling+
+                     as.factor(Economy_status_Developed), data=data.2015)
+#no significant difference between reduced and initial model
+anova(reg_2015_red, reg_2015, test = "F")
+
+print(vif(reg_2015_red))
 
 #single regression models for each variable
 #age_reg <- lm(charges~age, data=data) #significant
@@ -38,12 +47,23 @@ reg_2010 <- lm(Life_expectancy~. - Year - Country, data=data.2010)
 
 
 #multicollinearity
-#doesn't work
-print(vif(initial_reg)) #doesn't look like there's significant collinearity for any of the variables
+print(vif(reg_2015)) #high correlation in region, Infant_deaths, Under_five_deaths, hepB, Diphtheria, and thinness
+cor(data.2015$Thinness_five_nine_years, data.2015$Thinness_ten_nineteen_years) #EXTREMELY high
+
+correlation_matrix <- cor(data.2015[, sapply(data.2015, is.numeric)])
+high_correlation_indices <- which(correlation_matrix > 0.8, arr.ind = TRUE)
+high_correlation_values <- correlation_matrix[high_correlation_indices]
+row_names <- rownames(correlation_matrix)[high_correlation_indices[, 1]]
+col_names <- colnames(correlation_matrix)[high_correlation_indices[, 2]]
+result_df <- data.frame(
+  Row = row_names,
+  Column = col_names,
+  Correlation = high_correlation_values
+)
+print(result_df)
 
 #doesn't look substantially better or worse tbh
 reduced_reg <- #add later
 print(summary(reduced_reg))
 
-#no significant difference between reduced and initial model
-anova(reduced_reg, initial_reg, test = "F")
+
