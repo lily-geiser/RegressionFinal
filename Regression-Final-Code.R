@@ -12,6 +12,15 @@ initial_reg <- lm(charges~age+as.factor(sex)+bmi+children+as.factor(smoker)+as.f
 initial_reg <- lm(charges~., data=data)
 print(summary(initial_reg))
 
+#single regression models for each variable
+age_reg <- lm(charges~age, data=data) #significant
+sex_reg <- lm(charges~sex, data=data) #significant but barely
+bmi_reg <- lm(charges~bmi, data=data) #significant
+children_reg <- lm(charges~children, data=data) #significant but just a little
+smoker_reg <- lm(charges~smoker, data=data) #VERY significant
+region_reg <- lm(charges~region, data=data) #NOT significant
+
+
 #multicollinearity
 print(vif(initial_reg)) #doesn't look like there's significant collinearity for any of the variables
 
