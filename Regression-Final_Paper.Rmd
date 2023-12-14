@@ -1,0 +1,8 @@
+---
+title: "Final-Paper"
+author: "Lily Geiser"
+date: "2023-12-14"
+output: html_document
+---
+
+We can do our actual writeup here and then knit it to a pdf! Yay so easy to export.
