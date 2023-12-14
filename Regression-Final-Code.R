@@ -1,12 +1,6 @@
 library(car)
 library(tidyverse)
 
-#splitting the data into a training and testing set (if we want to use it)
-#set.seed(1)
-#train <- sample(1:nrow(data), 1100)
-#data.train <- data[train, ]
-#data.test <- data[-train, ]
-
 data <- read.csv("cleandata.csv")
 data.2015 <- data[data$Year == 2015, ]
 data.2010 <- data[data$Year == 2010, ]
@@ -27,10 +21,12 @@ reg_2015_red <- lm(Life_expectancy~Adult_mortality
                      Diphtheria+Incidents_HIV+GDP_per_capita+Population_mln+
                      Thinness_ten_nineteen_years+Schooling+
                      as.factor(Economy_status_Developed), data=data.2015)
-#no significant difference between reduced and initial model
-anova(reg_2015_red, reg_2015, test = "F")
-
+anova(reg_2015_red, reg_2015, test = "F") #initial model is better
 print(vif(reg_2015_red))
+
+#just region
+reg_2015_region <- lm(Life_expectancy~as.factor(Region), data=data.2015)
+plot(as.factor(data.2015$Region), data.2015$Life_expectancy)
 
 #single regression models for each variable
 #age_reg <- lm(charges~age, data=data) #significant
@@ -65,5 +61,59 @@ print(result_df)
 #doesn't look substantially better or worse tbh
 reduced_reg <- #add later
 print(summary(reduced_reg))
+
+
+
+
+
+#classification stuff
+#splitting the data into a training and testing set (if we want to use it)
+set.seed(1)
+train <- sample(1:nrow(data.2015), 125)
+data.train <- data.2015[train, ]
+data.test <- data.2015[-train, ]
+
+library(randomForest)
+set.seed(1)
+#creating the model
+rf2.fit <- randomForest(as.factor(Region) ~ . - Country, data = data.2015, subset = train, mtry = 2, importance = TRUE)
+#applying model to test set
+rf2.pred <- predict(rf2.fit, data.test)
+#creating confusion matrix
+print(table(rf2.pred, data.test$Region))
+#find test error
+rf2.error <- mean(rf2.pred != data.test$Region)
+rf2.error
+
+set.seed(1)
+library(e1071)
+#creating the model
+nb.fit <- naiveBayes(as.factor(Region) ~ ., data = data.2015, subset = train)
+#applying model to test set
+nb.pred <- predict(nb.fit, data.test)
+#creating confusion matrix
+print(table(nb.pred, data.test$Region))
+#find test error
+nb.error <- mean(nb.pred != data.test$Region)
+nb.error
+
+library(MASS)
+set.seed(1)
+#creating the model
+qda.fit <- lda(as.factor(Region) ~ . - Country, data = data.2015, subset = train)
+#applying model to test set
+qda.pred <- predict(qda.fit, data.test)
+#creating confusion matrix
+qda.class <- qda.pred$class
+print(table(qda.class, data.test$Region))
+#find test error
+qda.error <- mean(qda.class != data.test$Region)
+qda.error
+
+
+
+
+
+
 
 
