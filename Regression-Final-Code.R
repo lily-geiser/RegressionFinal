@@ -63,9 +63,6 @@ reduced_reg <- #add later
 print(summary(reduced_reg))
 
 
-
-
-
 #classification stuff
 #splitting the data into a training and testing set (if we want to use it)
 set.seed(1)
