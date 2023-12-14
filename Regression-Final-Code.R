@@ -1,6 +1,12 @@
 library(car)
 library(tidyverse)
 
+#splitting the data into a training and testing set (if we want to use it)
+#set.seed(1)
+#train <- sample(1:nrow(data), 1100)
+#data.train <- data[train, ]
+#data.test <- data[-train, ]
+
 data <- read.csv("finaldata.csv")
 data.2015 <- data[data$Year == 2015, ]
 
@@ -8,11 +14,12 @@ data.2015 <- data[data$Year == 2015, ]
 initial_reg <- lm(Life.expectancy~., data=data)
 print(summary(initial_reg))
 
-#splitting the data into a training and testing set (if we want to use it)
-set.seed(1)
-train <- sample(1:nrow(data), 1100)
-data.train <- data[train, ]
-data.test <- data[-train, ]
+#regression with just 2015
+reg_2015 <- lm(Life.expectancy~as.factor(Country)+#as.factor(Status)+
+                 Adult.Mortality+infant.deaths+
+                 Alcohol+percentage.expenditure+Hepatitis.B+Measles+BMI+under.five.deaths+Polio
+               +Diphtheria+HIV.AIDS+GDP+Population+thinness..1.19.years+
+                 thinness.5.9.years+Income.composition.of.resources+Schooling, data=data.2015)
 
 #single regression models for each variable
 #age_reg <- lm(charges~age, data=data) #significant
