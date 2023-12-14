@@ -6,3 +6,16 @@ output: html_document
 ---
 
 We can do our actual writeup here and then knit it to a pdf! Yay so easy to export.
+
+The World Health Organization: Factors that Influence Life Expectancy
+2015
+
+By Lily Geiser, Angel (?), and Hannah Ashburn
+
+I. Introduction
+
+The World Health Organization (WHO) is a specialized agency under the United Nations, its parent organization. Established on April 7, 1948, the WHO merged the assets, personnel, and duties of the League of Nations Health Organization with Paris's Office International d'Hygiène Publique, which included the International Classification of Diseases (ICD).
+
+While their primary objective is to help ensure the global population attains the highest level of health possible, the WHO has also been actively involved in gathering a wide range of data from member countries. This data, most of which is publically available, has been used to conduct a variety of research projects in hopes of solving the world's most pressing global health challenges. The metrics collected by the WHO's Global Health Observatory (GHO) include a broad range of health indicators such as mortality, disease prevalence, health system performance, and other social determinants of health. They also collect more qualitative data through the World Health Survey, which collects voluntarily submitted insights into people's perceived access to healthcare, health-related behaviors, and other personal information that would not be available otherwise. 
+
+By analyzing this data, not only can we add to a growing body of research, we can contribute our findings towards creating a better understanding of health trends and disparities across the globe. Furthermore, any remarkable trends identified in this data could have significant implications on policy development, resource allocation, and disease prevention and control-- all of which are vastly important areas. Such findings could bolster and facilitate efforts to increase the global population's quality of life and overall life expectancy, generating a significant impact on society as we know it. 
