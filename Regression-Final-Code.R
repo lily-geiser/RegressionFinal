@@ -7,19 +7,23 @@ library(tidyverse)
 #data.train <- data[train, ]
 #data.test <- data[-train, ]
 
-data <- read.csv("finaldata.csv")
+data <- read.csv("cleandata.csv")
 data.2015 <- data[data$Year == 2015, ]
+data.2010 <- data[data$Year == 2010, ]
 
 #just a basic regression
-initial_reg <- lm(Life.expectancy~., data=data)
+initial_reg <- lm(Life_expectancy~., data=data)
 print(summary(initial_reg))
 
 #regression with just 2015
-reg_2015 <- lm(Life.expectancy~as.factor(Country)+#as.factor(Status)+
+reg_2015 <- lm(Life.expectancy~as.factor(Country)+
                  Adult.Mortality+infant.deaths+
-                 Alcohol+percentage.expenditure+Hepatitis.B+Measles+BMI+under.five.deaths+Polio
+                 Alcohol+Hepatitis.B+Measles+BMI+under.five.deaths+Polio
                +Diphtheria+HIV.AIDS+GDP+Population+thinness..1.19.years+
                  thinness.5.9.years+Income.composition.of.resources+Schooling, data=data.2015)
+reg_2010 <- lm(Life_expectancy~. - Year, data=data.2010)
+reg_2015_ <- lm(Life.expectancy~. - Status, data=data.2015)
+
 
 #single regression models for each variable
 #age_reg <- lm(charges~age, data=data) #significant
