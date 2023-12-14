@@ -21,9 +21,7 @@ reg_2015 <- lm(Life.expectancy~as.factor(Country)+
                  Alcohol+Hepatitis.B+Measles+BMI+under.five.deaths+Polio
                +Diphtheria+HIV.AIDS+GDP+Population+thinness..1.19.years+
                  thinness.5.9.years+Income.composition.of.resources+Schooling, data=data.2015)
-reg_2010 <- lm(Life_expectancy~. - Year, data=data.2010)
-reg_2015_ <- lm(Life.expectancy~. - Status, data=data.2015)
-
+reg_2010 <- lm(Life_expectancy~. - Year - Country, data=data.2010)
 
 #single regression models for each variable
 #age_reg <- lm(charges~age, data=data) #significant
