@@ -88,7 +88,7 @@ library(car)
 print(vif(reg_2015_red))
 ```
 
-All of the VIF values above are quite low, demonstrating that we have managed to reduced collinearity.
+All of the VIF values above are quite low, demonstrating that we have managed to reduce collinearity.
 
 This reduced model also provides some different insights into the data. For example, alcohol consumption, Diphtheria, and Schooling now all have significant p-values associated with their coefficients. This could either be because they truly do have a significant relationship with life expectancy, which was masked in the full model, or because we removed too many variables and they are confounding the information we have above.
 
