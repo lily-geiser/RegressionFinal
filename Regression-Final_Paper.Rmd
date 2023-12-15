@@ -22,7 +22,7 @@ II. Model Creation and Analysis: Full Model
 
 The first model we created was a multiple regression model using data from only the year 2015. Our goal in creating this model is to see how life expectancy is correlated with the other variables in our dataset. We used data from only 2015 so that the different life expectancies reported varied by country alone, not by country and. year. Further, this model could then be applied to other years to verify that its accuracy; if this model is not accurate from year to year, this could imply to us that there are other confounding variables not included in the data, or that the explanatory factors could have varying impacts by country.
 
-The full model we created it shown below. As discussed, the independent variable is life expectancy; all other variables in the dataset are used, excluding country (as each life expectancy comes from a different country, therefore this variable could predict the life expectancy with 100% accuracy), year (as all data is from 2015), and Economy_status_Developing (as this is simply the reverse of Economy_status_Developed, which is included). Our null hypothesis associated with this model is that none of the explanatory variables have any correlation with life expectancy (i.e. that their coefficients equal 0). Our alternative hypothesis is that at least one of the explanatory variables has a coefficient that does not equal zero. For this model and all models used throughout this report, we will be using a significance level of 0.05.
+The full model we created it shown below. As discussed, the dependent variable is life expectancy; all other variables in the dataset are used, excluding country (as each life expectancy comes from a different country, therefore this variable could predict the life expectancy with 100% accuracy), year (as all data is from 2015), and Economy_status_Developing (as this is simply the reverse of Economy_status_Developed, which is included). Our null hypothesis associated with this model is that none of the explanatory variables have any correlation with life expectancy (i.e. that their coefficients equal 0). Our alternative hypothesis is that at least one of the explanatory variables has a coefficient that does not equal zero. For this model and all models used throughout this report, we will be using a significance level of 0.05.
 
 ```{r full_model}
 #importing data and creating 2015 dataset
@@ -132,7 +132,7 @@ PART II: A Closer Look at Our Explanatory Variables
 
 V. Testing individual diseases
 
-Out of curiosity, we wanted to check if life expectancy had higher correlation with the disease variables, something we all presume to have a great impact on one's health. Similarly to our previous models, the independent variable is life expectancy and our predictor variables are Hepatitis_B, Measles, Diphtheria, Polio, and Incidents_HIV. Using 2015 as the year, this was the model we created:
+Out of curiosity, we wanted to check if life expectancy had higher correlation with the disease variables, something we all presume to have a great impact on one's health. Similarly to our previous models, the dependent variable is life expectancy and our predictor variables are Hepatitis_B, Measles, Diphtheria, Polio, and Incidents_HIV. Using 2015 as the year, this was the model we created:
 
 ```{r reg_dis}
 reg_dis <- lm(Life_expectancy~Hepatitis_B+Measles+Polio+Diphtheria+Incidents_HIV,
