@@ -1,16 +1,12 @@
 ---
-title: "Final-Paper"
-author: "Lily Geiser"
-date: "2023-12-14"
+title: 'The World Health Organization: Factors that Influence Life Expectancy'
+author: "Lily Geiser, Hannah Ashburn, Angel Baeza"
+date: "2023-12-16"
 output:
-  pdf_document: default
+  word_document: default
   html_document: default
+  pdf_document: default
 ---
-
-The World Health Organization: Factors that Influence Life Expectancy
-2015
-
-By Lily Geiser, Angel Baeza, and Hannah Ashburn
 
 I. Introduction
 
