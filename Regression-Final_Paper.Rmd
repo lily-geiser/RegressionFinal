@@ -102,5 +102,23 @@ The output above tells us that, although we had initially seen that the reduced 
 
 IV. Testing our Model on 2014 Data
 
+To further confirm that our full model is more accurate than our reduced model, we are going to use these two models to predict the life expectancy for the different countries in 2014, and see which yields more accurate results. The code for this trial can be found below:
+
+```{r 2014_test}
+#creating 2014 data
+data.2014 <- data[data$Year == 2014, ]
+
+#predicting 2014 life expectancy with different models
+predict_full <- predict(reg_2015, data.2014)
+predict_red <- predict(reg_2015_red, data.2014)
+
+#find MSE for both models
+mse_full <- mean((predict_full - data.2014$Life_expectancy)^2)
+mse_red <- mean((predict_red - data.2014$Life_expectancy)^2)
+print(mse_full)
+print(mse_red)
+```
+
+We can see based on the above that our test MSE for the full model is approximately 1.35, while the test MSE for the reduced model is about 2.83. As the full model produces a lower MSE, we can once again conclude that the full model produces a more accurate prediction of life expectancy than the reduced model.
 
 
