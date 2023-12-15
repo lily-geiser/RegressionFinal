@@ -126,4 +126,32 @@ print(mse_red)
 
 We can see based on the above that our test MSE for the full model is approximately 1.35, while the test MSE for the reduced model is about 2.83. As the full model produces a lower MSE, we can once again conclude that the full model produces a more accurate prediction of life expectancy than the reduced model.
 
+V. Testing individual diseases
+
+Out of curiosity, we wanted to check if life expectancy had higher correlation with the disease variables, something we all presume to have a great impact on one's health. Similarly to our previous models, the independent variable is life expectancy and our predictor variables are Hepatitis_B, Measles, Diphtheria, Polio, and Incidents_HIV. Using 2015 as the year, this was the model we created:
+
+```{r reg_dis}
+reg_dis <- lm(Life_expectancy~Hepatitis_B+Measles+Polio+Diphtheria+Incidents_HIV,
+              data=data.2015)
+print(summary(reg_dis))
+```
+
+Looking at the results of the model, we can see that the model itself isn't the absolute best fit compared to our previous models, with the multiple R-squared 0.5877, however, the p-value is significantly low, at < 2.2e-16. One problem that does from this model is the amount of multicollinearity with some variables, as seen below:
+
+```{r vif(reg_dis), echo = F}
+print(vif(reg_dis))
+```
+
+It seems as if Diphtheria is the most correlated with another variable in the model (with a VIF of 14.455149) and Hepatitis_B being the second (with a VIF of 9.399759). We attempted at making a reduced model riddening the two diseases with the highest VIFs, trying to eliminate the multicollinearity, producing this new one:
+
+```{r reg_dis_red, echo = F}
+reg_dis_red <- lm(Life_expectancy~Measles+Polio+Incidents_HIV, data = data.2015)
+print(summary(reg_dis_red))
+print(vif(reg_dis_red))
+```
+
+This model produces a model that has less multicollinearity, however, the fitness is reduced, having multiple R-squared of 0.5564, 0.0313 lower than the first disease model. Although, we did have lower VIFs for each of the variables that we did keep.
+
+From this curiosity attempt at making sense of the impact of disease on life expectancy, we can take that diseases, themselves, are not the sole predictor variables for life expectancy, and that we get a better fit model when we include other predictor variables, such as BMI and Alcohol_consumption. We can also potentially assume that, although some diseases are highly correlated with others, they still are important in creating a model that looks at the impact of diseases on life expectancy.
+
 
