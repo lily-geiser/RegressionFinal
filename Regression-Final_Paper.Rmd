@@ -161,6 +161,23 @@ print(mse_red)
 
 We can see based on the above that our test MSE for the full model is approximately 1.35, while the test MSE for the reduced model is about 2.83. As the full model produces a lower MSE, we can once again conclude that the full model produces a more accurate prediction of life expectancy than the reduced model.
 
+Despite this, both of these MSEs are quite low, considering the range of the data and the number of data points we are looking at. As we can see by the below graphs, the predicted values for both line up extremely closely with the true life expectancies:
+
+```{r predicted_vals_graph}
+#creating dataframes for graphs
+pred_vals_full <- data.frame(y = data.2014$Life_expectancy, x = predict_full)
+pred_vals_red <- data.frame(y = data.2014$Life_expectancy, x = predict_red)
+
+ggplot(pred_vals_full, aes(x = x, y = y)) +
+  geom_point(size=1.5, color = "red") + theme_classic() + 
+  labs(x = "Predicted Values (Full Model)", y = "True Life Expectancy")
+
+ggplot(pred_vals_red, aes(x = x, y = y)) +
+  geom_point(size=1.5, color = "blue") + theme_classic() + 
+  labs(x = "Predicted Values (Reduced Model)", y = "True Life Expectancy")
+
+```
+
 PART II: A Closer Look at Our Explanatory Variables
 
 V. Testing individual diseases
