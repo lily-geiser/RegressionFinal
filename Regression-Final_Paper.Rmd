@@ -54,11 +54,16 @@ As we can see, some of these variables have incredibly high VIF values; specific
 Our next step was to determine which specific variables are closely related to each other. The code to accomplish this is below; the output of this code is which cells of the covariance matrix have values greater than 0.8, and the associated variables. Categorical variables were excluded from the generated covariance matrix.
 
 ```{r covar}
+#create covariance matrix
 matrix <- cor(data.2015[, sapply(data.2015, is.numeric)])
+
+#find high correlation values and their corresponding row and column names
 high_correlation_indices <- which(matrix > 0.8 & matrix < 1, arr.ind = TRUE)
 high_correlation_values <- matrix[high_correlation_indices]
 row_names <- rownames(matrix)[high_correlation_indices[, 1]]
 col_names <- colnames(matrix)[high_correlation_indices[, 2]]
+
+#export information to a datafram and print in order of correlation
 result_df <- data.frame(
   Row = row_names,
   Column = col_names,
