@@ -42,6 +42,39 @@ There are several insights we can obtain from the above model. Firstly, we can s
 
 If we look at the coefficients associated with the variables, we will observe that multiple of them are statistically significant; specifically, the regions Central America and the Caribbean, and South America; the under five mortality rate; adult mortality; HIV incidence; GDP per capita; and whether the country is classified as Developed or Developing all have statistically significant coefficients. The coefficient associated with the intercept is also significant. This tells us there is evidence that these variables specifically have nonzero coefficents; there is not sufficient evidence to come to this conclusion for the other variables, as they all have associated p-values of greater than 0.05. 
 
+The significance of these variables can be corroborated by observing some of their marginal scatterplots. For instance, adult mortality appears to have a very clear linear relationship with life expectancy:
+
+```{r adult_mortality}
+library(ggplot2)
+ggplot(data.2015, aes(x = Adult_mortality, y = Life_expectancy)) +
+  geom_point(size=1.5, color = "red", shape = 4) + theme_classic() + 
+  labs(x = "Adult Mortality Rate", y = "Life Expectancy")
+```
+
+
+We can also observe regional differences with the graph below:
+
+```{r regions}
+ggplot(data.2015, aes(x = Region, y = Life_expectancy, color = Region)) +
+  geom_point() + theme_classic() + labs(x = "Region", y = "Life Expectancy") +
+  theme(axis.text.x = element_blank()) + 
+  scale_color_manual(values = c("Africa" = "#006400", "Asia" = "#FFD700", "Central America and Caribbean" = "#FF4500", "European Union" = "#0000CD", "Middle East" = "#8B4513", "North America" = "#FF0000", "Oceania" = "#000080", "Rest of Europe" = "#8A2BE2", "South America" = "#008000"))
+```
+
+Interestingly, although it seems clear that South America would have substantially different life expectancies than other countries, Central America and the Caribbean do not appear to be as substantially different than our model suggested. This tells us that there is likely another confounding factor going on here (for instance, there may be some multicollinearity).
+
+Additionally, by graphing GDP v. life expectancy, we also see a slightly different trend than what our model predicts. As shown below, it appears to have a logarithmic relationship with life expectancy rather than a linear one. When we graph log(GDP) rather than simply GDP, we observe this more linear relationship:
+
+```{r GDP}
+ggplot(data.2015, aes(x = GDP_per_capita, y = Life_expectancy)) +
+  geom_point(size=1.5, color = "green") + theme_classic() + 
+  labs(x = "GDP per capita", y = "Life Expectancy")
+
+ggplot(data.2015, aes(x = log(GDP_per_capita), y = Life_expectancy)) +
+  geom_point(size=1.5, color = "green") + theme_classic() + 
+  labs(x = "Log(GDP per capita)", y = "Life Expectancy")
+```
+
 III. Explanatory Variable Correlation and a Reduced Model
 
 While our model above appears to be an incredibly good fit, we wanted to see if this model could be improved upon with a reduced model. Firstly, we wanted to see whether any of the variables above were highly correlated. To accomplish this, we first obtained the associated VIF values:
