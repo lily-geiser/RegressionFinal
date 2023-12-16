@@ -20,7 +20,7 @@ PART I: Predicting Life Expectancy
 
 II. Model Creation and Analysis: Full Model
 
-The first model we created was a multiple regression model using data from only the year 2015. Our goal in creating this model is to see how life expectancy is correlated with the other variables in our dataset. We used data from only 2015 so that the different life expectancies reported varied by country alone, not by country and. year. Further, this model could then be applied to other years to verify that its accuracy; if this model is not accurate from year to year, this could imply to us that there are other confounding variables not included in the data, or that the explanatory factors could have varying impacts by country.
+The first model we created was a multiple regression model using data from only the year 2015. Our goal in creating this model is to see how life expectancy is correlated with the other variables in our dataset. We used data from only 2015 so that the different life expectancies reported varied by country alone, not by country and year. Further, this model could then be applied to other years to verify that its accuracy; if this model is not accurate from year to year, this could imply to us that there are other confounding variables not included in the data, or that the explanatory factors could have varying impacts by year.
 
 The full model we created it shown below. As discussed, the dependent variable is life expectancy; all other variables in the dataset are used, excluding country (as each life expectancy comes from a different country, therefore this variable could predict the life expectancy with 100% accuracy), year (as all data is from 2015), and Economy_status_Developing (as this is simply the reverse of Economy_status_Developed, which is included). Our null hypothesis associated with this model is that none of the explanatory variables have any correlation with life expectancy (i.e. that their coefficients equal 0). Our alternative hypothesis is that at least one of the explanatory variables has a coefficient that does not equal zero. For this model and all models used throughout this report, we will be using a significance level of 0.05.
 
@@ -38,7 +38,7 @@ reg_2015 <- lm(Life_expectancy~as.factor(Region)+Infant_deaths+Under_five_deaths
 print(summary(reg_2015))
 ```
 
-There are several insights we can obtain from the above model. Firstly, we can say that this model appears to be a good fit and does an excellent job of predicting life expectancy. Firstly, we can observe that the p-value associated with the overall model is extremely close to 0, at less than 2.2e-16. This tells us that we can certainly reject our null hypothesis and accept the alternative hypothesis. Further, we can see that the multiple R-squared value is 0.9781; this is a value incredibly close to 1, which tells us that nearly all of the variation in life expectancy can be explained by the variation in the explanatory variables.
+There are several insights we can obtain from the above model. Firstly, we can say that this model appears to be a good fit and does an excellent job of predicting life expectancy. We can observe that the p-value associated with the overall model is extremely close to 0, at less than 2.2e-16. This tells us that we can certainly reject our null hypothesis and accept the alternative hypothesis. Further, we can see that the multiple R-squared value is 0.9781; this is a value incredibly close to 1, which tells us that nearly all of the variation in life expectancy can be explained by the variation in the explanatory variables.
 
 If we look at the coefficients associated with the variables, we will observe that multiple of them are statistically significant; specifically, the regions Central America and the Caribbean, and South America; the under five mortality rate; adult mortality; HIV incidence; GDP per capita; and whether the country is classified as Developed or Developing all have statistically significant coefficients. The coefficient associated with the intercept is also significant. This tells us there is evidence that these variables specifically have nonzero coefficents; there is not sufficient evidence to come to this conclusion for the other variables, as they all have associated p-values of greater than 0.05. 
 
@@ -327,7 +327,7 @@ Marginal Scatter Plots by Region:
 
 ```{r Scatter Plots of Alcohol Consumption and Life Expectancy}
 #generating marginal scatter plots of the data for visual comparison
-par(mfrow=c(3,3))
+par(mfrow=c(1,2))
 plot(data.Africa$Alcohol_consumption, data.Africa$Life_expectancy, xlab = "Alcohol Consumption", ylab = "Life Expectancy", main = "Africa")
 abline(Africa_results)
   
@@ -454,14 +454,14 @@ Marginal Scatter Plots by Region:
 
 ```{r Scatter Plots of Alcohol Consumption and Adult Mortality}
 #generating marginal scatter plots of the data for visual comparison
-par(mfrow=c(3,3))
+par(mfrow=c(1,2))
 plot(data.Africa$Alcohol_consumption, data.Africa$Adult_mortality, xlab = "Alcohol Consumption", ylab = "Adult Mortality", main = "Africa")
 abline(Africa_results)
 
 plot(data.Asia$Alcohol_consumption, data.Asia$Adult_mortality, xlab = "Alcohol Consumption", ylab = "Adult Mortality", main = "Asia")
 abline(Asia_results)
 
-plot(data.Cen_America_Caribbean$Alcohol_consumption, data.Cen_America_Caribbean$Adult_mortality, xlab = "Alcohol Consumption", ylab = "Adult Mortality", main = "Cen. America & Carribean")
+plot(data.Cen_America_Caribbean$Alcohol_consumption, data.Cen_America_Caribbean$Adult_mortality, xlab = "Alcohol Consumption", ylab = "Adult Mortality", main = "Cen. America & Caribbean")
 abline(CenA_Car_results)
 
 plot(data.EU$Alcohol_consumption, data.EU$Adult_mortality, xlab = "Alcohol Consumption", ylab = "Adult Mortality", main = "European Union")
