@@ -327,7 +327,7 @@ Marginal Scatter Plots by Region:
 
 ```{r Scatter Plots of Alcohol Consumption and Life Expectancy}
 #generating marginal scatter plots of the data for visual comparison
-par(mfrow=c(1,2))
+par(mfrow=c(2,2))
 plot(data.Africa$Alcohol_consumption, data.Africa$Life_expectancy, xlab = "Alcohol Consumption", ylab = "Life Expectancy", main = "Africa")
 abline(Africa_results)
   
@@ -454,7 +454,7 @@ Marginal Scatter Plots by Region:
 
 ```{r Scatter Plots of Alcohol Consumption and Adult Mortality}
 #generating marginal scatter plots of the data for visual comparison
-par(mfrow=c(1,2))
+par(mfrow=c(2,2))
 plot(data.Africa$Alcohol_consumption, data.Africa$Adult_mortality, xlab = "Alcohol Consumption", ylab = "Adult Mortality", main = "Africa")
 abline(Africa_results)
 
