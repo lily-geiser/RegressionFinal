@@ -24,45 +24,26 @@ data.ME <- data[data$Region == "Middle East", ]
 data.NA <- data[data$Region == "North America", ]
 
 #------------------------------------------------------------------------
-# Life Expectancy
+# Correlation of Alcohol Consumption on Life Expectancy
 
-#significant for all dates
 Africa_results <- lm(Life_expectancy~Alcohol_consumption, data = data.Africa)
-summary(Africa_results)
-
-#not significant for all dates
 Rest_Europe_results <- lm(Life_expectancy~Alcohol_consumption, data = data.Rest_of_Europe)
-summary(Rest_Europe_results)
-
-#significant for all dates
 Asia_results <- lm(Life_expectancy~Alcohol_consumption, data = data.Asia)
-summary(Asia_results)
-
-#not significant for all dates
 SA_results <- lm(Life_expectancy~Alcohol_consumption, data = data.South_America)
-summary(SA_results)
-
-#significant for all dates
 CenA_Car_results <- lm(Life_expectancy~Alcohol_consumption, data = data.Cen_America_Caribbean)
-summary(CenA_Car_results)
-
-#significant for 2015
-#significant for all dates
 Oceania_results <- lm(Life_expectancy~Alcohol_consumption, data = data.Oceania)
-summary(Oceania_results)
-
-#significant for 2015
-#significant for all dates
 EU_results <- lm(Life_expectancy~Alcohol_consumption, data = data.EU)
-summary(EU_results)
-
-#significant for 2015
-#significant for all dates
 ME_results <- lm(Life_expectancy~Alcohol_consumption, data = data.ME)
-summary(ME_results)
-
-#significant for all dates
 NA_results <- lm(Life_expectancy~Alcohol_consumption, data = data.NA)
+
+summary(Africa_results)
+summary(Rest_Europe_results)
+summary(Asia_results)
+summary(SA_results)
+summary(CenA_Car_results)
+summary(Oceania_results)
+summary(EU_results)
+summary(ME_results)
 summary(NA_results)
 
 # marginal scatter plots
@@ -108,46 +89,26 @@ plot(Rest_Europe_results)
 plot(SA_results)
 
 #------------------------------------------------------------------------
-# Adult Mortality
+# Correlation of Alcohol Consumption on Life Expectancy
 
-#significant for all dates
 Africa_results <- lm(Adult_mortality~Alcohol_consumption, data = data.Africa)
-summary(Africa_results)
-
-#significant for all dates
 Rest_Europe_results <- lm(Adult_mortality~Alcohol_consumption, data = data.Rest_of_Europe)
-summary(Rest_Europe_results)
-
-#not significant for all dates
 Asia_results <- lm(Adult_mortality~Alcohol_consumption, data = data.Asia)
-summary(Asia_results)
-
-#significant at 0.1 for 2015
-#significant at 0.1 for all dates
 SA_results <- lm(Adult_mortality~Alcohol_consumption, data = data.South_America)
-summary(SA_results)
-
-#significant for all dates
 CenA_Car_results <- lm(Adult_mortality~Alcohol_consumption, data = data.Cen_America_Caribbean)
-summary(CenA_Car_results)
-
-#significant for 2015
-#significant for all dates
 Oceania_results <- lm(Adult_mortality~Alcohol_consumption, data = data.Oceania)
-summary(Oceania_results)
-
-#significant for 2015
-#significant for all dates
 EU_results <- lm(Adult_mortality~Alcohol_consumption, data = data.EU)
-summary(EU_results)
-
-#significant at 0.1 for 2015
-#significant for all dates
 ME_results <- lm(Adult_mortality~Alcohol_consumption, data = data.ME)
-summary(ME_results)
-
-#significant for all dates
 NA_results <- lm(Adult_mortality~Alcohol_consumption, data = data.NA)
+
+summary(Africa_results)
+summary(Rest_Europe_results)
+summary(Asia_results)
+summary(SA_results)
+summary(CenA_Car_results)
+summary(Oceania_results)
+summary(EU_results)
+summary(ME_results)
 summary(NA_results)
 
 # marginal scatter plots
