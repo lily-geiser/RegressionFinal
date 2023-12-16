@@ -488,7 +488,7 @@ Here we can see that while there is not a strong linear correlation between alco
 
 While it was hypothesized that the linear regression models of alcohol consumption's effects on adult mortality would be stronger than the previous models that used life expectancy as the dependent variable, we see that this is actually not the case; while the adult mortality models show more regions having a statistically significant coefficient estimate for alcohol consumption, the R-squared values of these models are not better than those modeling life expectancy across the board.
 
-Though the results of these single linear regression models did not yeild as strong of correlations as we had hoped, that is likely due to inconsistencies in the data set, particularly regarding the unequal number of data points for each region. While our research here does not discover anything groundbreaking, it raises an important question about the impact of alcohol on life expectancy across various geographical regions.
+Though the results of these single linear regression models did not yield as strong of correlations as we had hoped, that is likely due to inconsistencies in the data set, particularly regarding the unequal number of data points for each region. While our research here does not discover anything groundbreaking, it raises an important question about the impact of alcohol on life expectancy across various geographical regions.
 
 As alcohol consumption is a multifaceted behavior deeply intertwined with cultural norms, societal contexts, and individual habits, a more comprehensive and focused data set is needed should one want to conduct meaningful and significant research on the topic.
 
