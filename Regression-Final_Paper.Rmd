@@ -256,35 +256,6 @@ summary(Oceania_results)
 summary(EU_results)
 summary(ME_results)
 summary(NA_results)
-
-#generating marginal scatter plots of the data for visual comparison
-par(mfrow=c(3,3))
-plot(data.Africa$Alcohol_consumption, data.Africa$Life_expectancy, xlab = "Alcohol Consumption", ylab = "Life Expectancy", main = "Africa")
-abline(Africa_results)
-  
-plot(data.Asia$Alcohol_consumption, data.Asia$Life_expectancy, xlab = "Alcohol Consumption", ylab = "Life Expectancy", main = "Asia")
-abline(Asia_results)
-
-plot(data.Cen_America_Caribbean$Alcohol_consumption, data.Cen_America_Caribbean$Life_expectancy, xlab = "Alcohol Consumption", ylab = "Life Expectancy", main = "Cen. America & Carribean")
-abline(CenA_Car_results)
-
-plot(data.EU$Alcohol_consumption, data.EU$Life_expectancy, xlab = "Alcohol Consumption", ylab = "Life Expectancy", main = "European Union")
-abline(EU_results)
-
-plot(data.ME$Alcohol_consumption, data.ME$Life_expectancy, xlab = "Alcohol Consumption", ylab = "Life Expectancy", main = "Middle East")
-abline(ME_results)
-
-plot(data.NA$Alcohol_consumption, data.NA$Life_expectancy, xlab = "Alcohol Consumption", ylab = "Life Expectancy", main = "North America")
-abline(NA_results)
-
-plot(data.Oceania$Alcohol_consumption, data.Oceania$Life_expectancy, xlab = "Alcohol Consumption", ylab = "Life Expectancy", main = "Oceania")
-abline(Oceania_results)
-
-plot(data.Rest_of_Europe$Alcohol_consumption, data.Rest_of_Europe$Life_expectancy, xlab = "Alcohol Consumption", ylab = "Life Expectancy", main = "Rest of Europe")
-abline(Rest_Europe_results)
-
-plot(data.SA$Alcohol_consumption, data.SA$Life_expectancy, xlab = "Alcohol Consumption", ylab = "Life Expectancy", main = "South America")
-abline(SA_results)
 ```
 
 There are several insights we can obtain from the above models and marginal scatter plots. For simplicity's sake, we will discuss each model's goodness of fit, including the p-values and R-squared values, as well as the significance of alcohol consumption on life expectancy. 
@@ -354,6 +325,37 @@ South America:
 
 Marginal Scatter Plots by Region:
 
+```{r Scatter Plots of Alcohol Consumption and Life Expectancy}
+#generating marginal scatter plots of the data for visual comparison
+par(mfrow=c(3,3))
+plot(data.Africa$Alcohol_consumption, data.Africa$Life_expectancy, xlab = "Alcohol Consumption", ylab = "Life Expectancy", main = "Africa")
+abline(Africa_results)
+  
+plot(data.Asia$Alcohol_consumption, data.Asia$Life_expectancy, xlab = "Alcohol Consumption", ylab = "Life Expectancy", main = "Asia")
+abline(Asia_results)
+
+plot(data.Cen_America_Caribbean$Alcohol_consumption, data.Cen_America_Caribbean$Life_expectancy, xlab = "Alcohol Consumption", ylab = "Life Expectancy", main = "Cen. America & Carribean")
+abline(CenA_Car_results)
+
+plot(data.EU$Alcohol_consumption, data.EU$Life_expectancy, xlab = "Alcohol Consumption", ylab = "Life Expectancy", main = "European Union")
+abline(EU_results)
+
+plot(data.ME$Alcohol_consumption, data.ME$Life_expectancy, xlab = "Alcohol Consumption", ylab = "Life Expectancy", main = "Middle East")
+abline(ME_results)
+
+plot(data.NA$Alcohol_consumption, data.NA$Life_expectancy, xlab = "Alcohol Consumption", ylab = "Life Expectancy", main = "North America")
+abline(NA_results)
+
+plot(data.Oceania$Alcohol_consumption, data.Oceania$Life_expectancy, xlab = "Alcohol Consumption", ylab = "Life Expectancy", main = "Oceania")
+abline(Oceania_results)
+
+plot(data.Rest_of_Europe$Alcohol_consumption, data.Rest_of_Europe$Life_expectancy, xlab = "Alcohol Consumption", ylab = "Life Expectancy", main = "Rest of Europe")
+abline(Rest_Europe_results)
+
+plot(data.SA$Alcohol_consumption, data.SA$Life_expectancy, xlab = "Alcohol Consumption", ylab = "Life Expectancy", main = "South America")
+abline(SA_results)
+```
+
 
 Here we can see that while there is not a strong linear correlation between alcohol consumption and life expectancy among all regions, the best models appear to be North America, Oceania, and generiously, the Middle East and South America.
 
@@ -383,7 +385,74 @@ summary(Oceania_results)
 summary(EU_results)
 summary(ME_results)
 summary(NA_results)
+```
 
+Africa:
+  R-Squared: 0.05291
+  p-value: 2.925e-11
+  Coefficient: 9.933 at 2.93e-11
+  
+  Comments: The associated p-value is extremely close to 0 (2.93e-11). This tells us that we can reject the null hypothesis and accept the alternative hypothesis. However, the R-squared value is 0.05291; while this value is slightly better than the life expectancy model, it is still incredibly close to 0, which tells us that almost none of the variation in Africa's adult mortality can be explained by the variation in alcohol consumption. Regarding the coefficient associated with alcohol consumption, we observe that it is statistically significant at an alpha level of 0.05. Overall, this model is not a good fit.
+
+Asia:
+  R-Squared: 9.459e-05
+  p-value: 0.8403
+  Coefficient: -0.233 at 0.84
+  
+  Comments: The associated p-value is not close to 0 (0.8403). This tells us that we fail to reject the null hypothesis. However, the R-squared value is 9.459e-05; this is a value incredibly close to 0, which tells us that almost none of the variation in Asia's adult mortality can be explained by the variation in alcohol consumption. Regarding the coefficient associated with alcohol consumption, we observe that it is not statistically significant at an alpha level of 0.05. Overall, this model is not a good fit.
+
+Central America & Caribbean:
+  R-Squared: 0.03357
+  p-value: 0.001334
+  Coefficient: -2.9016 at 0.00133
+  
+  Comments: The associated p-value is extremely close to 0 (0.00133). This tells us that we can reject the null hypothesis and accept the alternative hypothesis. However, the R-squared value is 0.03357; this is a value incredibly close to 0, which tells us that almost none of the variation in Central America and the Caribbean's adult mortality can be explained by the variation in alcohol consumption. Regarding the coefficient associated with alcohol consumption, we observe that it is statistically significant at an alpha level of 0.05. Overall, this model is not a good fit.
+
+European Union:
+  R-Squared: 0.1128
+  p-value: 7.526e-13
+  Coefficient: 6.8866 at 7.53e-13
+
+  Comments: The associated p-value is extremely close to 0 (7.526e-13). This tells us that we can reject the null hypothesis and accept the alternative hypothesis. However, the R-squared value is 0.1128; this is a value incredibly close to 0, which tells us that appx. 11% of the variation in the European Union's adult mortality can be explained by the variation in alcohol consumption. Regarding the coefficient associated with alcohol consumption, we observe that it is statistically significant at an alpha level of 0.05. Overall, this model is not a good fit.
+
+Rest of Europe:
+  R-Squared: 0.09077
+  p-value: 1.994e-06
+  Coefficient: 7.336 at 1.99e-06
+  
+  Comments: The associated p-value is extremely close to 0 (1.994e-06). This tells us that we can reject the null hypothesis and accept the alternative hypothesis. However, the R-squared value is 0.09077; this is a value incredibly close to 0, which tells us that almost none of the variation in the Rest of Europe's adult mortality can be explained by the variation in alcohol consumption. Regarding the coefficient associated with alcohol consumption, we observe that it is statistically significant at an alpha level of 0.05. Overall, this model is not a good fit.
+
+Oceania:
+  R-Squared: 0.6638
+  p-value: < 2.2e-16
+  Coefficient: -13.5905 at <2e-16
+  
+  Comments: The associated p-value is extremely close to 0 (< 2.2e-16). This tells us that we can reject the null hypothesis and accept the alternative hypothesis. However, the R-squared value is 0.7822; this is a value relatively close to 1, which tells us that appx. 66% of the variation in Oceania's adult mortality can be explained by the variation in alcohol consumption. Regarding the coefficient associated with alcohol consumption, we observe that it is statistically significant at an alpha level of 0.05. Overall, this model is an okay fit. 
+
+Middle East:
+  R-Squared: 0.2566
+  p-value: 5.324e-16
+  Coefficient: -28.999 at 5.32e-16
+  
+  Comments: The associated p-value is extremely close to 0 (5.324e-16). This tells us that we can reject the null hypothesis and accept the alternative hypothesis. However, the R-squared value is 0.4116; this is a value almost halfway between 0 and 1, which tells us that appx. 25% of the variation in the Middle East's adult mortality can be explained by the variation in alcohol consumption. Regarding the coefficient associated with alcohol consumption, we observe that it is statistically significant at an alpha level of 0.05. Overall, this model is not a great fit. 
+
+North America:
+  R-Squared: 0.3099
+  p-value: 3.975e-05
+  Coefficient: -6.305 at 3.98e-05
+
+  Comments: The associated p-value is extremely close to 0 (3.975e-05). This tells us that we can reject the null hypothesis and accept the alternative hypothesis. However, the R-squared value is 0.3099; this is a value a third of the way between 0 and 1, which tells us that appx. 31% of the variation in North America's adult mortality can be explained by the variation in alcohol consumption. Regarding the coefficient associated with alcohol consumption, we observe that it is statistically significant at an alpha level of 0.05. Overall, this model is not a good fit. 
+
+South America:
+  R-Squared: 0.2702
+  p-value: 0.0832
+  Coefficient: -11.048 at 0.083204
+  
+  Comments: The associated p-value is not extremely close to 0 (0.0832). This tells us that we fail to reject the null hypothesis. However, the R-squared value is 0.2702; this is a value close to 0, which tells us that appx. 27% of the variation in South America's adult mortality can be explained by the variation in alcohol consumption. Regarding the coefficient associated with alcohol consumption, we observe that it is not statistically significant at an alpha level of 0.05. Overall, this model is not a good fit.
+  
+Marginal Scatter Plots by Region:
+
+```{r Scatter Plots of Alcohol Consumption and Adult Mortality}
 #generating marginal scatter plots of the data for visual comparison
 par(mfrow=c(3,3))
 plot(data.Africa$Alcohol_consumption, data.Africa$Adult_mortality, xlab = "Alcohol Consumption", ylab = "Adult Mortality", main = "Africa")
@@ -414,77 +483,12 @@ plot(data.SA$Alcohol_consumption, data.SA$Adult_mortality, xlab = "Alcohol Consu
 abline(SA_results)
 ```
 
-Africa:
-  R-Squared: 0.05291
-  p-value: 2.925e-11
-  Coefficient: 9.933 at 2.93e-11
-  
-  Comments: The associated p-value is extremely close to 0 (2.93e-11). This tells us that we can reject the null hypothesis and accept the alternative hypothesis. However, the R-squared value is 0.05291; while this value is slightly better than the life expectancy modek, it is still incredibly close to 0, which tells us that almost none of the variation in Africa's adult mortality can be explained by the variation in alcohol consumption. Regarding the coefficient associated with alcohol consumption, we observe that it is statistically significant at an alpha level of 0.05. Overall, this model is not a good fit.
 
-Asia:
-  R-Squared: 9.459e-05
-  p-value: 0.8403
-  Coefficient: -0.233 at 0.84
-  
-  Comments: The associated p-value is not close to 0 (0.8403). This tells us that we fail to reject the null hypothesis. However, the R-squared value is 9.459e-05; this is a value incredibly close to 0, which tells us that almost none of the variation in Asia's life expectancy can be explained by the variation in alcohol consumption. Regarding the coefficient associated with alcohol consumption, we observe that it is not statistically significant at an alpha level of 0.05. Overall, this model is not a good fit.
-
-Central America & Caribbean:
-  R-Squared: 0.03357
-  p-value: 0.001334
-  Coefficient: -2.9016 at 0.00133
-  
-  Comments: The associated p-value is extremely close to 0 (0.00133). This tells us that we can reject the null hypothesis and accept the alternative hypothesis. However, the R-squared value is 0.03357; this is a value incredibly close to 0, which tells us that almost none of the variation in Central America and the Carribean's life expectancy can be explained by the variation in alcohol consumption. Regarding the coefficient associated with alcohol consumption, we observe that it is statistically significant at an alpha level of 0.05. Overall, this model is not a good fit.
-
-European Union:
-  R-Squared: 0.1128
-  p-value: 7.526e-13
-  Coefficient: 6.8866 at 7.53e-13
-
-  Comments: The associated p-value is extremely close to 0 (7.526e-13). This tells us that we can reject the null hypothesis and accept the alternative hypothesis. However, the R-squared value is 0.1128; this is a value incredibly close to 0, which tells us that appx. 11% of the variation in the Eurupean Union's life expectancy can be explained by the variation in alcohol consumption. Regarding the coefficient associated with alcohol consumption, we observe that it is statistically significant at an alpha level of 0.05. Overall, this model is not a good fit.
-
-Rest of Europe:
-  R-Squared: 0.09077
-  p-value: 1.994e-06
-  Coefficient: 7.336 at 1.99e-06
-  
-  Comments: The associated p-value is extremely close to 0 (1.994e-06). This tells us that we can reject the null hypothesis and accept the alternative hypothesis. However, the R-squared value is 0.09077; this is a value incredibly close to 0, which tells us that almost none of the variation in the Rest of Europe's life expectancy can be explained by the variation in alcohol consumption. Regarding the coefficient associated with alcohol consumption, we observe that it is statistically significant at an alpha level of 0.05. Overall, this model is not a good fit.
-
-Oceania:
-  R-Squared: 0.6638
-  p-value: < 2.2e-16
-  Coefficient: -13.5905 at <2e-16
-  
-  Comments: The associated p-value is extremely close to 0 (< 2.2e-16). This tells us that we can reject the null hypothesis and accept the alternative hypothesis. However, the R-squared value is 0.7822; this is a value relatively close to 1, which tells us that appx. 66% of the variation in Oceania's life expectancy can be explained by the variation in alcohol consumption. Regarding the coefficient associated with alcohol consumption, we observe that it is statistically significant at an alpha level of 0.05. Overall, this model is an okay fit. 
-
-Middle East:
-  R-Squared: 0.2566
-  p-value: 5.324e-16
-  Coefficient: -28.999 at 5.32e-16
-  
-  Comments: The associated p-value is extremely close to 0 (5.324e-16). This tells us that we can reject the null hypothesis and accept the alternative hypothesis. However, the R-squared value is 0.4116; this is a value almost halfway between 0 and 1, which tells us that appx. 25% of the variation in the Middle East's life expectancy can be explained by the variation in alcohol consumption. Regarding the coefficient associated with alcohol consumption, we observe that it is statistically significant at an alpha level of 0.05. Overall, this model is not a great fit. 
-
-North America:
-  R-Squared: 0.3099
-  p-value: 3.975e-05
-  Coefficient: -6.305 at 3.98e-05
-
-  Comments: The associated p-value is extremely close to 0 (3.975e-05). This tells us that we can reject the null hypothesis and accept the alternative hypothesis. However, the R-squared value is 0.3099; this is a value a third of the way between 0 and 1, which tells us that appx. 31% of the variation in North America's life expectancy can be explained by the variation in alcohol consumption. Regarding the coefficient associated with alcohol consumption, we observe that it is statistically significant at an alpha level of 0.05. Overall, this model is not a good fit. 
-
-South America:
-  R-Squared: 0.2702
-  p-value: 0.0832
-  Coefficient: -11.048 at 0.083204
-  
-  Comments: The associated p-value is not extremely close to 0 (0.0832). This tells us that we fail to reject the null hypothesis. However, the R-squared value is 0.2702; this is a value close to 0, which tells us that appx. 27% of the variation in South America's life expectancy can be explained by the variation in alcohol consumption. Regarding the coefficient associated with alcohol consumption, we observe that it is not statistically significant at an alpha level of 0.05. Overall, this model is not a good fit.
-  
-Marginal Scatter Plots by Region:
-
-
-Here we can see that while there is not a strong linear correlation between alcohol consumption and life expectancy among all regions, the best model appears to be Oceania.
+Here we can see that while there is not a strong linear correlation between alcohol consumption and adult mortality among all regions, the best model appears to be Oceania.
 
 While it was hypothesized that the linear regression models of alcohol consumption's effects on adult mortality would be stronger than the previous models that used life expectancy as the dependent variable, we see that this is actually not the case; while the adult mortality models show more regions having a statistically significant coefficient estimate for alcohol consumption, the R-squared values of these models are not better than those modeling life expectancy across the board.
 
-Though the results of these single linear regression models did not yeild as strong of correlations as we had hoped, that is likely due to inconsistiencies in the data set, particularly regarding the unequal number of data points for each region. While our research here does not discover anything groundbreaking, it raises an important question about the impact of alcohol on life expectancy across various geographical regions.
+Though the results of these single linear regression models did not yeild as strong of correlations as we had hoped, that is likely due to inconsistencies in the data set, particularly regarding the unequal number of data points for each region. While our research here does not discover anything groundbreaking, it raises an important question about the impact of alcohol on life expectancy across various geographical regions.
 
 As alcohol consumption is a multifaceted behavior deeply intertwined with cultural norms, societal contexts, and individual habits, a more comprehensive and focused data set is needed should one want to conduct meaningful and significant research on the topic.
 
