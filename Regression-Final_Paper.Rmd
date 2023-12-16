@@ -24,7 +24,7 @@ The first model we created was a multiple regression model using data from only 
 
 The full model we created it shown below. As discussed, the dependent variable is life expectancy; all other variables in the dataset are used, excluding country (as each life expectancy comes from a different country, therefore this variable could predict the life expectancy with 100% accuracy), year (as all data is from 2015), and Economy_status_Developing (as this is simply the reverse of Economy_status_Developed, which is included). Our null hypothesis associated with this model is that none of the explanatory variables have any correlation with life expectancy (i.e. that their coefficients equal 0). Our alternative hypothesis is that at least one of the explanatory variables has a coefficient that does not equal zero. For this model and all models used throughout this report, we will be using a significance level of 0.05.
 
-```{r full_model}
+```{r full_model, echo = FALSE}
 #importing data and creating 2015 dataset
 data <- read.csv("cleandata.csv")
 data.2015 <- data[data$Year == 2015, ]
@@ -44,7 +44,7 @@ If we look at the coefficients associated with the variables, we will observe th
 
 The significance of these variables can be corroborated by observing some of their marginal scatterplots. For instance, adult mortality appears to have a very clear linear relationship with life expectancy:
 
-```{r adult_mortality}
+```{r adult_mortality, echo = FALSE}
 library(ggplot2)
 ggplot(data.2015, aes(x = Adult_mortality, y = Life_expectancy)) +
   geom_point(size=1.5, color = "red", shape = 4) + theme_classic() + 
@@ -54,7 +54,7 @@ ggplot(data.2015, aes(x = Adult_mortality, y = Life_expectancy)) +
 
 We can also observe regional differences with the graph below:
 
-```{r regions}
+```{r regions, echo = FALSE}
 ggplot(data.2015, aes(x = Region, y = Life_expectancy, color = Region)) +
   geom_point() + theme_classic() + labs(x = "Region", y = "Life Expectancy") +
   theme(axis.text.x = element_blank()) + 
@@ -65,7 +65,7 @@ Interestingly, although it seems clear that South America would have substantial
 
 Additionally, by graphing GDP v. life expectancy, we also see a slightly different trend than what our model predicts. As shown below, it appears to have a logarithmic relationship with life expectancy rather than a linear one. When we graph log(GDP) rather than simply GDP, we observe this more linear relationship:
 
-```{r GDP}
+```{r GDP, echo = FALSE}
 ggplot(data.2015, aes(x = GDP_per_capita, y = Life_expectancy)) +
   geom_point(size=1.5, color = "green") + theme_classic() + 
   labs(x = "GDP per capita", y = "Life Expectancy")
@@ -79,7 +79,7 @@ III. Explanatory Variable Correlation and a Reduced Model
 
 While our model above appears to be an incredibly good fit, we wanted to see if this model could be improved upon with a reduced model. Firstly, we wanted to see whether any of the variables above were highly correlated. To accomplish this, we first obtained the associated VIF values:
 
-```{r vif}
+```{r vif, echo = FALSE}
 library(car)
 print(vif(reg_2015))
 ```
@@ -88,7 +88,7 @@ As we can see, some of these variables have incredibly high VIF values; specific
 
 Our next step was to determine which specific variables are closely related to each other. The code to accomplish this is below; the output of this code is which cells of the covariance matrix have values greater than 0.8, and the associated variables. Categorical variables were excluded from the generated covariance matrix.
 
-```{r covar}
+```{r covar, echo = FALSE}
 #create covariance matrix
 matrix <- cor(data.2015[, sapply(data.2015, is.numeric)])
 
@@ -112,7 +112,7 @@ As we can see above, there are multiple variables which are very strongly correl
 
 Based on the above information, we created the reduced model coded below:
 
-```{r reduced_model}
+```{r reduced_model, echo = FALSE}
 reg_2015_red <- lm(Life_expectancy~Adult_mortality
                      +Alcohol_consumption+Measles+BMI+
                      Diphtheria+Incidents_HIV+GDP_per_capita+Population_mln+
@@ -123,7 +123,7 @@ print(summary(reg_2015_red))
 
 We can see based on the above that this model is still an incredibly good fit; the multiple R-squared value is still extremely close to 1 at 0.9552, and the p-value associated with the overall model is still extremely small. This model also has a significantly reduced amount of multicollinearity, as shown below:
 
-```{r red_vif}
+```{r red_vif, echo = FALSE}
 library(car)
 print(vif(reg_2015_red))
 ```
@@ -134,7 +134,7 @@ This reduced model also provides some different insights into the data. For exam
 
 To determine whether we should use the full model or reduced model, we will perform an ANOVA test:
 
-```{r anova}
+```{r anova, echo = FALSE}
 anova(reg_2015_red, reg_2015, test = "F")
 ```
 
@@ -144,7 +144,7 @@ IV. Testing our Model on 2014 Data
 
 To further confirm that our full model is more accurate than our reduced model, we are going to use these two models to predict the life expectancy for the different countries in 2014, and see which yields more accurate results. The code for this trial can be found below:
 
-```{r 2014_test}
+```{r 2014_test, echo = FALSE}
 #creating 2014 data
 data.2014 <- data[data$Year == 2014, ]
 
@@ -163,7 +163,7 @@ We can see based on the above that our test MSE for the full model is approximat
 
 Despite this, both of these MSEs are quite low, considering the range of the data and the number of data points we are looking at. As we can see by the below graphs, the predicted values for both line up extremely closely with the true life expectancies:
 
-```{r predicted_vals_graph}
+```{r predicted_vals_graph, echo = FALSE}
 #creating dataframes for graphs
 pred_vals_full <- data.frame(y = data.2014$Life_expectancy, x = predict_full)
 pred_vals_red <- data.frame(y = data.2014$Life_expectancy, x = predict_red)
@@ -184,7 +184,7 @@ V. Testing Individual Diseases
 
 Out of curiosity, we wanted to check if life expectancy had higher correlation with the disease variables, something we all presume to have a great impact on one's health. Similarly to our previous models, the dependent variable is life expectancy and our predictor variables are Hepatitis_B, Measles, Diphtheria, Polio, and Incidents_HIV. Using 2015 as the year, this was the model we created:
 
-```{r reg_dis}
+```{r reg_dis, echo = FALSE}
 reg_dis <- lm(Life_expectancy~Hepatitis_B+Measles+Polio+Diphtheria+Incidents_HIV,
               data=data.2015)
 print(summary(reg_dis))
@@ -325,7 +325,7 @@ South America:
 
 Marginal Scatter Plots by Region:
 
-```{r Scatter Plots of Alcohol Consumption and Life Expectancy}
+```{r Scatter Plots of Alcohol Consumption and Life Expectancy, echo = FALSE}
 #generating marginal scatter plots of the data for visual comparison
 par(mfrow=c(2,2))
 plot(data.Africa$Alcohol_consumption, data.Africa$Life_expectancy, xlab = "Alcohol Consumption", ylab = "Life Expectancy", main = "Africa")
@@ -361,7 +361,7 @@ Here we can see that while there is not a strong linear correlation between alco
 
 Because "life expectancy" accounts for those of all ages, we also thought it was important to consider the effects of alcohol on adult mortality only. As adults are likely the age group with the largest influence on the alcohol consumption data point, we hoped that replacing the dependent variable of life expectancy with adult mortality in the single linear regression would yeild better fitting models. 
 
-```{r single_model_adult_mortality}
+```{r single_model_adult_mortality, echo = TRUE}
 
 #creating single regression models
 
@@ -452,7 +452,7 @@ South America:
   
 Marginal Scatter Plots by Region:
 
-```{r Scatter Plots of Alcohol Consumption and Adult Mortality}
+```{r Scatter Plots of Alcohol Consumption and Adult Mortality, echo = FALSE}
 #generating marginal scatter plots of the data for visual comparison
 par(mfrow=c(2,2))
 plot(data.Africa$Alcohol_consumption, data.Africa$Adult_mortality, xlab = "Alcohol Consumption", ylab = "Adult Mortality", main = "Africa")
